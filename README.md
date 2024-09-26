@@ -15,6 +15,9 @@ System Design социальной сети для курса по System Desi
 - 10 000 000 DAU/year
 - availability 99,95%
 - только СНГ
+- равномерное распределение по сезонам
+- avarage response time ~ 1c
+- rate limits - create 7 rpm per user - read 300 rpm per user
 - web/mobile/mobile site
 - create 2 post per day
 - read 10 posts per day
@@ -37,7 +40,12 @@ RPS (create reactions):
     DAU = 10 000 000
     RPS = 10 000 000 * 5 / 86 400 ~= 580
 
-Connection pool:
+RPS (read reactions):
+
+    DAU = 10 000 000
+    RPS = 10 000 000 * 10 / 86 400 ~= 1200
+
+Opened connections:
      DAU = 10 000 000
      Connections = 10 000 000 * 0.1 = 1 000 000
 
