@@ -14,14 +14,20 @@ System Design социальной сети для курса по System Desi
 
 - 10 000 000 DAU/year
 - availability 99,95%
-- только СНГ
-- равномерное распределение по сезонам
-- avarage response time ~ 1c
-- rate limits - create 7 rpm per user - read 300 rpm per user
+- only CIS
+- the workload depends on the holiday season
+- upper bound on response time ~ 1c
+- rate limits per user
+    - create posts 7 rpm
+    - read posts 300 rpm
+    - create reactions 300 rpm
+    - read reactions 300 rpm
 - web/mobile/mobile site
-- create 2 post per day
-- read 10 posts per day
-- create reactions 5 per day
+- average usage by user
+    - create 2 post per day
+    - read 10 posts per day
+    - create reactions 5 per day
+    - read reactions 10 per day
 
 ## Basic calculations
 
@@ -46,16 +52,16 @@ RPS (read reactions):
     RPS = 10 000 000 * 10 / 86 400 ~= 1200
 
 Opened connections:
-     DAU = 10 000 000
-     Connections = 10 000 000 * 0.1 = 1 000 000
+DAU = 10 000 000
+Connections = 10 000 000 * 0.1 = 1 000 000
 
 Data types in storage per post:
-    title = 100b
-    location = 16b
-    created_at = 8b
-    author = 8b
-    reaction = 2b
-        = 134b
+title = 100b
+location = 16b
+created_at = 8b
+author = 8b
+reaction = 2b
+= 134b
 
     foto ~= 3Mb
 
